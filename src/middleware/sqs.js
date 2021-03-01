@@ -73,8 +73,21 @@ const pollMessages = async (req, res, next) => {
     }
 };
 
+const deleteQueue = async (req, res, next) => {
+    const QueueUrl = req.body.queueUrl;
+
+    try {
+        const data = await sqs.deleteQueue({ QueueUrl }).promise();
+        console.log(data);
+        next();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 module.exports = {
     createQueue,
     sendMessageToQueue,
-    pollMessages
+    pollMessages,
+    deleteQueue
 };
