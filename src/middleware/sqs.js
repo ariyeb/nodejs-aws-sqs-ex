@@ -65,7 +65,7 @@ const pollMessages = async (req, res, next) => {
                 }).promise();
             });
 
-            Promise.all(messagesDeleteFuncs)
+            Promise.allSettled(messagesDeleteFuncs)
                 .then(data => console.log(data));
         }
     } catch (err) {
